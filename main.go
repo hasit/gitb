@@ -47,8 +47,21 @@ func main() {
 	ls.Width = width + 3
 	ls.Y = 0
 
+	message := termui.NewPar("Branches loaded.")
+	message.Width = 16
+	message.Height = 2
+	message.Border = false
+	message.Y = ls.Height / 2
+	message.X = ls.Width + 2
+
+	legend := termui.NewPar("q       Quit\n<down>  Next branch\n<up>    Previous branch\n<enter> Switch branch")
+	legend.Height = 6
+	legend.Width = 25
+	legend.Y = ls.Height + 2
+	legend.BorderLabel = "Shortcuts"
+
 	ls.Items = branchList
-	termui.Render(ls)
+	termui.Render(message, legend, ls)
 
 	handleUpDown := func(p, n int) {
 		if p != n {
@@ -56,17 +69,23 @@ func main() {
 			branchList[p] = strings.Replace(branchList[p], "red", "white", -1)
 		}
 		ls.Items = branchList
-		termui.Render(ls)
+		termui.Render(message, legend, ls)
 	}
-	handleEnter := func(currentSel int) {
+
+	handleEnter := func(out string, currentSel int) {
 		if currentBranch != currentSel {
 			branchList[currentBranch] = strings.Replace(branchList[currentBranch], "*", " ", 1)
 			branchList[currentSel] = strings.Replace(branchList[currentSel], " ", "*", 1)
 		}
 		currentBranch = currentSel
 		ls.Items = branchList
-		termui.Render(ls)
+		m := "Switched branch to '" + strings.Replace(branchList[currentSel], "* ", "", -1) + "'\n" + out
+		message.Text = m
+		message.Width = len(m) + 3
+		termui.Clear()
+		termui.Render(message, legend, ls)
 	}
+
 	termui.Handle("/sys/kbd/q", func(termui.Event) {
 		termui.StopLoop()
 	})
@@ -84,11 +103,11 @@ func main() {
 		branchListItem := branchList[currentSel]
 		branchListItem = strings.TrimPrefix(branchListItem, "[  ")
 		branchListItem = strings.TrimSuffix(branchListItem, "](fg-red)")
-		exec.Command("git", "checkout", branchListItem).Output()
+		out, err := exec.Command("git", "checkout", branchListItem).Output()
 		if err != nil {
 			panic(err)
 		}
-		handleEnter(currentSel)
+		handleEnter(string(out), currentSel)
 	})
 	termui.Loop()
 }
