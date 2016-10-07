@@ -49,7 +49,7 @@ func main() {
 
 	message := termui.NewPar("Branches loaded.")
 	message.Width = 16
-	message.Height = 2
+	message.Height = 5
 	message.Border = false
 	message.Y = ls.Height / 2
 	message.X = ls.Width + 2
@@ -101,7 +101,7 @@ func main() {
 	})
 	termui.Handle("/sys/kbd/<enter>", func(termui.Event) {
 		branchListItem := branchList[currentSel]
-		branchListItem = strings.TrimPrefix(branchListItem, "[  ")
+		branchListItem = branchListItem[3:]
 		branchListItem = strings.TrimSuffix(branchListItem, "](fg-red)")
 		out, err := exec.Command("git", "checkout", branchListItem).Output()
 		if err != nil {
