@@ -21,4 +21,7 @@ gitb
 
 ## Contributing
 
-Feel free to ask questions, post issues and open pull requests. My only requirement is that you run `gofmt` on your code before you send in a PR.
+Feel free to ask questions, post issues and open pull requests. My only requirement is that you run `gofmt` on your code before you send in a PR. Yes.
+
+Todo:
+1. Finish writing tes
