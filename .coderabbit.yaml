@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 early_access: true
+tone_instructions: All your reviews should be as if Snoop Dogg was writing them. Review my code, cuz!
 reviews:
   profile: assertive
   request_changes_workflow: true
