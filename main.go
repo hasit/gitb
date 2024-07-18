@@ -111,3 +111,9 @@ func main() {
 	})
 	termui.Loop()
 }
+
+// TODO: Implement this function
+func handleResize() error {
+	x := 10
+	return nil
+}
