@@ -8,6 +8,11 @@ import (
 	"github.com/gizak/termui"
 )
 
+// main initializes a CLI for managing Git branches using termui.
+// It executes the "git branch" command to obtain the list of branches, identifies the current branch (marked with an asterisk), and formats branch names with color coding based on their selection status.
+// The function sets up a terminal UI that displays the branch list, a status message, and a legend of keyboard shortcuts (q for quit, <up>/<down> for navigation, and <enter> for switching branches).
+// It registers event handlers to update the highlighted branch on navigation and to execute a "git checkout" for branch switching, updating the UI accordingly with confirmation messages.
+// Errors during command execution or UI initialization are handled by logging fatal errors or panicking.
 func main() {
 	out, err := exec.Command("git", "branch").Output()
 	if err != nil {
@@ -112,7 +117,9 @@ func main() {
 	termui.Loop()
 }
 
-// TODO: Implement this function
+// HandleResize processes window resize events for the terminal user interface.
+// This placeholder implementation does not adjust the layout and always returns nil.
+// In a future update, it should recalculate UI dimensions and return an error if the operation fails.
 func handleResize() error {
 	x := 10
 	return nil
