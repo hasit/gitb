@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 early_access: true
 reviews:
+  finishing_touches:
+    docstrings:
+      enabled: true
   profile: assertive
   request_changes_workflow: true
   high_level_summary: true
