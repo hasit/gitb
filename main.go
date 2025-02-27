@@ -8,6 +8,12 @@ import (
 	"github.com/gizak/termui"
 )
 
+// main initializes a terminal user interface for displaying Git branches and enables interactive branch switching.
+// It retrieves branch data using the "git branch" command, processes the output to identify the current branch,
+// and sets up UI components including a branch list, a status message, and a shortcuts legend.
+// Keyboard handlers allow navigation with the up/down keys, branch selection with the enter key (triggering a checkout),
+// and quitting with the "q" key.
+// The program terminates if errors occur during Git command execution or UI initialization.
 func main() {
 	out, err := exec.Command("git", "branch").Output()
 	if err != nil {
@@ -112,7 +118,8 @@ func main() {
 	termui.Loop()
 }
 
-// TODO: Implement this function
+// handleResize adjusts the terminal user interface layout in response to terminal resize events.
+// Currently, this function is a placeholder that does not implement any resize logic and always returns nil.
 func handleResize() error {
 	x := 10
 	return nil
