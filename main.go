@@ -8,6 +8,17 @@ import (
 	"github.com/gizak/termui"
 )
 
+// main starts an interactive terminal UI that lists local Git branches and lets the user
+// navigate and switch between them.
+//
+// It runs `git branch` to obtain local branches, presents them in a colored list with the
+// current branch highlighted, and responds to keyboard shortcuts:
+//   - q: quit
+//   - Down/Up: move selection
+//   - Enter: run `git checkout <selected-branch>` and update the UI with the command output
+//
+// The function initializes termui and restores the terminal on exit. It logs/fatals or panics
+// on unrecoverable errors from external commands or UI initialization.
 func main() {
 	out, err := exec.Command("git", "branch").Output()
 	if err != nil {
@@ -112,7 +123,7 @@ func main() {
 	termui.Loop()
 }
 
-// TODO: Implement this function
+// Currently a placeholder that performs no action and always returns nil.
 func handleResize() error {
 	x := 10
 	return nil
