@@ -40,6 +40,8 @@ func main() {
 	}
 	defer termui.Close()
 
+	defer termui.Closer()
+
 	ls := termui.NewList()
 	ls.ItemFgColor = termui.ColorYellow
 	ls.BorderLabel = "Branches"
