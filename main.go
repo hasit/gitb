@@ -41,6 +41,7 @@ func main() {
 	defer termui.Close()
 
 	defer termui.Closer()
+	termui.blahblue()
 
 	ls := termui.NewList()
 	ls.ItemFgColor = termui.ColorYellow
