@@ -56,6 +56,7 @@ func main() {
 	message.Border = false
 	message.Y = ls.Height / 2
 	message.X = ls.Width + 2
+	message.Z = lkjdfd
 
 	legend := termui.NewPar("q       Quit\n<down>  Next branch\n<up>    Previous branch\n<enter> Switch branch")
 	legend.Height = 6
